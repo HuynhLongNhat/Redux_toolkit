@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllUser } from "../action/actions"
+import { fetchAllUser, deleteUser } from "../action/actions"
 const TableUser = () => {
 
 
@@ -16,7 +16,8 @@ const TableUser = () => {
     }, [])
 
     const handleDeleteUser = (user) => {
-        console.log(user)
+
+        dispatch(deleteUser(user.id))
     }
     if (isError === false && isLoading === true) {
         return (
@@ -82,7 +83,7 @@ const TableUser = () => {
                                     <td>{item.email}</td>
                                     <td>{item.username}</td>
                                     <td>
-                                        <button onClick={(item) => handleDeleteUser(item)} className='btn btn-danger mx-3'>Delete</button>
+                                        <button onClick={() => handleDeleteUser(item)} className='btn btn-danger mx-3'>Delete</button>
                                         <button className='btn btn-warning'>Edit</button>
                                     </td>
                                 </tr>
@@ -94,45 +95,7 @@ const TableUser = () => {
             </Container>
         )
     }
-    // return (<>
-    //     <Container>
-    //         <hr></hr>
-    //         <Table striped bordered hover>
-    //             <thead>
-    //                 <tr>
-    //                     <th>#</th>
-    //                     <th>Email</th>
-    //                     <th>User name</th>
-    //                     <th>Actions</th>
-    //                 </tr>
-    //             </thead>
-    //             <tbody>
-    //                 {isError === true ? <>
-    //                     <div>Something wrong, please try again...</div>
-    //                 </> :
-    //                     <>
-    //                         {isLoading === true ? <>Loading data...</> :
-    //                             <> {listUser && listUser.length > 0 && listUser.map((item, index) => {
-    //                                 return (
-    //                                     <tr key={`user-${index}`}>
-    //                                         <td>{index + 1}</td>
-    //                                         <td>{item.email}</td>
-    //                                         <td>{item.username}</td>
-    //                                         <td>
-    //                                             <button onClick={(item) => handleDeleteUser(item)} className='btn btn-danger mx-3'>Delete</button>
-    //                                             <button className='btn btn-warning'>Edit</button>
-    //                                         </td>
-    //                                     </tr>
-    //                                 )
-    //                             })}</>}
 
-    //                     </>
-    //                 }
-
-    //             </tbody>
-    //         </Table>
-    //     </Container>
-    // </>);
 }
 
 export default TableUser;
