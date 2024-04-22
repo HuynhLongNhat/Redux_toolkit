@@ -13,12 +13,12 @@ const initWebRoutes = (app) => {
     router.get("/", homeController.handleHelloWord);
     router.get("/user", homeController.handleUserPage);
     router.post("/users/create-user", homeController.handleCreateNewUser);
-    router.post("/delete-user/:id", homeController.handleDelteUser)
+    router.post("/delete-user/:id", homeController.handleDeleteUser)
     router.get("/update-user/:id", homeController.getUpdateUserPage);
     router.post("/user/update-user", homeController.handleUpdateUser);
 
     //test api
-    router.post("/users/delete/:id", homeController.handleDelteUserAPI)
+    router.post("/users/delete/:id", homeController.handleDeleteUserAPI)
     router.get("/users/all", homeController.handleUserGetAPI);
     router.post("/users/create", homeController.handleCreateNewUserAPI);
 

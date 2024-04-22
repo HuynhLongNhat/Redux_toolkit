@@ -20,7 +20,7 @@ const handleCreateNewUser = (req, res) => {
     return res.redirect("/user");
 }
 
-const handleDelteUser = async (req, res) => {
+const handleDeleteUser = async (req, res) => {
     await userService.deleteUser(req.params.id);
     return res.redirect("/user");
 }
@@ -49,12 +49,12 @@ const handleUserGetAPI = async (req, res) => {
     setTimeout(async () => {
         let userList = await userService.getUserList();
         return res.status(200).json(userList);
-    }, 100)
+    }, 1000)
 
 }
 
 
-const handleDelteUserAPI = async (req, res) => {
+const handleDeleteUserAPI = async (req, res) => {
     await userService.deleteUser(req.params.id);
     return res.status(200).json({
         message: `User with the id = ${req.params.id} is deleted successfully!`,
@@ -78,6 +78,6 @@ const handleCreateNewUserAPI = async (req, res) => {
 }
 
 module.exports = {
-    handleHelloWord, handleUserPage, handleCreateNewUser, handleDelteUser, getUpdateUserPage,
-    handleUpdateUser, handleUserGetAPI, handleDelteUserAPI, handleCreateNewUserAPI
+    handleHelloWord, handleUserPage, handleCreateNewUser, handleDeleteUser, getUpdateUserPage,
+    handleUpdateUser, handleUserGetAPI, handleDeleteUserAPI, handleCreateNewUserAPI
 }
